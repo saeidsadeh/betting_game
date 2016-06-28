@@ -3,6 +3,7 @@
 <head>
   <title>betting game</title>
   <script src="script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <!-- add jquery -->
 </head>
 <body>
@@ -26,7 +27,12 @@ Bet amount?  [input field]
 -->
 
 <h1>Betting Game</h1>
-<button onclick="javascript:startGame()"> Start Game </button>
+  Pick up a number between $5 to $10:<br>
+  <input type="text" id="betMoneyId" name="betMoney"><br>
+  Choose a number between 1 tp 10:<br>
+  <input type="text" id="choseNumberId" name="chosenNumber">
+  <button onclick="javascript:startGame()"> Start Game </button>
+  <p id="resultId"></p>
 
 <!-- Money u have: <div element here>123</div><br/>
 

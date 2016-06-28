@@ -12,44 +12,54 @@ function getRandomNumber(min, max) {
 }
 
 function startGame (){
-  while (playerMoney > 0) {
-    var min = Math.min(minBet, playerMoney)
-    var max = Math.min(maxBet, playerMoney)
+  // alert("Hi");
+  var betMoney = parseInt($("#betMoneyId").val());
+  // alert(betMoney);
+  var choseNumber = parseInt($("#choseNumberId").val());
+  // alert(choseNumber);
+
+    if (playerMoney > 0) {
+    var min = Math.min(minBet, playerMoney);
+    var max = Math.min(maxBet, playerMoney);
     var random_number = getRandomNumber(minRand, maxRand)
-    var playerBet = Number(prompt("pick a bet between $" + min +" and $" + max+ " you have $ "+playerMoney+" left in you account!"));
-    if (isNaN(playerBet)){
-      alert("You have not provided us with an actual number!");
-      continue;
+    // var playerBet = Number(prompt("pick a bet between $" + min +" and $" + max+ " you have $ "+playerMoney+" left in you account!"));
+    if (isNaN(betMoney)){
+      $("#resultId").text("You have not provided us with an actual number!");
+      return;
+      // alert("You have not provided us with an actual number!");
+      // continue;
     }
 
-    if (playerBet < min || playerBet > max){
-      alert("you should bet brtween $" + min + "and $" + max);
-      continue;
+    if (betMoney < min || betMoney > max){
+      $("#resultId").text("you should bet brtween $" + min + "and $" + max);
+      return;
+      // continue;
     }
 
-    var playerGuess = Number(prompt("pick a number btween " +minRand+ " and " +maxRand+ "!"))
-      if (isNaN(playerGuess)){
-        alert("you have not provided an actual number!");
-        continue;
+    // var playerGuess = Number(prompt("pick a number btween " +minRand+ " and " +maxRand+ "!"))
+      if (isNaN(choseNumber)){
+        $("#resultId").text("you have not provided an actual number!");
+        return;
+        // continue;
       } 
 
-    var substract = Math.abs(playerGuess - random_number)
+    var substract = Math.abs(choseNumber - random_number)
     switch(substract){
       case 0:
-          playerMoney += playerBet;
-          alert("you won! your total money is $" + playerMoney);
+          playerMoney += betMoney;
+          $("#resultId").text("you won! your total money is $" + playerMoney);
         break;
       case 1:
           playerMoney == playerMoney;
-          alert("your money is still $" + playerMoney);
+          $("#resultId").text("your money is still $" + playerMoney);
         break;
       default:
-          playerMoney -= playerBet
+          playerMoney -= betMoney;
         if (playerMoney > 0){
-          alert ("you did not get a close answer your money is still $" + playerMoney);
+          $("#resultId").text("you did not get a close answer your money is still $" + playerMoney);
           }
         else{
-          alert("you lost all your money!");
+          $("#resultId").text("you lost all your money!");
           }
       break;
     }
@@ -57,7 +67,6 @@ function startGame (){
   }
 
 }
-
 
 
 
